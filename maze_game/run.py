@@ -9,9 +9,9 @@ def main():
     parser = argparse.ArgumentParser(description='Luxury Maze Adventure')
     parser.add_argument(
         '--mode',
-        choices=['web', 'terminal', 'advanced', 'enhanced'],
-        default='enhanced',
-        help='Interface mode: web, terminal, advanced, or enhanced (default: enhanced)',
+        choices=['web', 'terminal', 'advanced', 'enhanced', 'quest'],
+        default='quest',
+        help='Interface mode: web, terminal, advanced, enhanced, or quest (default: quest)',
     )
     parser.add_argument(
         '--port', type=int, default=8000, help='Port for web interface (default: 8000)'
@@ -53,7 +53,12 @@ def main():
     parser.add_argument(
         '--show-inventory',
         action='store_true',
-        help='Show inventory (enhanced terminal only)',
+        help='Show inventory (enhanced/quest terminal only)',
+    )
+    parser.add_argument(
+        '--show-quest',
+        action='store_true',
+        help='Show quest panel (quest terminal only)',
     )
 
     args = parser.parse_args()
@@ -85,10 +90,17 @@ def main():
 
         main()
 
-    else:  # enhanced terminal mode
+    elif args.mode == 'enhanced':
         # Import and run enhanced terminal interface
         sys.path.append(os.path.dirname(os.path.abspath(__file__)))
         from enhanced_terminal_interface import main
+
+        main()
+
+    else:  # quest terminal mode
+        # Import and run quest terminal interface
+        sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+        from quest_terminal_interface import main
 
         main()
 
