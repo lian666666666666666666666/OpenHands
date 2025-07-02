@@ -7,6 +7,7 @@ A sophisticated maze game where AI players navigate through randomly generated m
 - **Enhanced Random Maze Generation**: Creates unique mazes with varying complexity, density, and difficulty levels
 - **Super-Intelligent AI Player**: Advanced pathfinding and strategic decision-making with complete solution planning
 - **Optimized AI with Anti-Stuck Mechanisms**: Improved decision-making logic that prevents getting stuck in loops
+- **Limited Vision AI**: Ultra-intelligent AI with 3x3 vision range that optimizes for both finding the exit and collecting maximum resources
 - **Rich Game Elements**:
   - Multiple resource types (small and large)
   - Different trap varieties (basic and advanced)
@@ -24,11 +25,20 @@ A sophisticated maze game where AI players navigate through randomly generated m
   - Multiple quest types (resource collection, puzzle solving, boss slaying, etc.)
   - Quest progress tracking
   - Rewards for quest completion
+- **Resource Collection Optimization**:
+  - Resources disappear after collection
+  - AI optimizes path to collect maximum resources while finding the exit
+  - Adaptive resource value estimation based on maze exploration
+- **Fog of War Mechanics**:
+  - Limited 3x3 vision range
+  - Memory-based path planning
+  - Exploration score to guide AI toward unexplored areas
 - **Prompt-Based Engine**: Uses a structured prompt generation system that can be connected to LLM engines
 - **Web Interface**: Interactive visualization and control of the maze game
 - **Terminal Interface**: Alternative text-based interface for testing and development
 - **Enhanced Terminal Interface**: Rich curses-based interface with color, animation, solution visualization, and auto-navigation
 - **Quest Terminal Interface**: Advanced interface with quest system, improved visualization, and anti-stuck AI
+- **Limited Vision Interface**: Specialized interface showing fog of war, memory-based path planning, and resource collection optimization
 
 ## Architecture
 
@@ -38,18 +48,23 @@ The system follows a modular architecture with the following components:
 2. **AI Player**: Basic pathfinding and decision-making algorithms
 3. **Enhanced AI Player**: Advanced AI with RPG mechanics, inventory, skills, and strategic planning
 4. **Optimized AI Player**: Improved AI with quest system and anti-stuck mechanisms
-5. **Prompt Generator**: Creates structured prompts for the AI engine
-6. **Maze Engine**: Coordinates game logic and state management
-7. **Web Interface**: Provides a browser-based UI for the game
-8. **Terminal Interface**: Provides a text-based UI for testing
-9. **Enhanced Terminal Interface**: Provides a rich curses-based UI with color, animation, and advanced visualization
-10. **Quest Terminal Interface**: Provides an advanced UI with quest system and improved visualization
+5. **Limited Vision AI**: Ultra-intelligent AI with 3x3 vision range that optimizes for both finding the exit and collecting maximum resources
+6. **Prompt Generator**: Creates structured prompts for the AI engine
+7. **Maze Engine**: Coordinates game logic and state management
+8. **Web Interface**: Provides a browser-based UI for the game
+9. **Terminal Interface**: Provides a text-based UI for testing
+10. **Enhanced Terminal Interface**: Provides a rich curses-based UI with color, animation, and advanced visualization
+11. **Quest Terminal Interface**: Provides an advanced UI with quest system and improved visualization
+12. **Limited Vision Interface**: Provides a specialized UI showing fog of war, memory-based path planning, and resource collection optimization
 
 ## Technical Implementation
 
 - **Maze Generation**: Uses a modified Prim's algorithm with enhanced feature placement
 - **AI Navigation**: Implements A* algorithm for optimal pathfinding with complete solution planning
 - **Anti-Stuck Mechanisms**: Intelligent decision-making with position tracking and priority adjustments
+- **Limited Vision AI**: Advanced path planning with partial information and memory-based exploration
+- **Resource Optimization**: Value-based decision making to maximize resource collection while finding the exit
+- **Fog of War**: Implementation of limited vision range with memory of previously seen cells
 - **Quest System**: Dynamic quest assignment with progress tracking and rewards
 - **RPG Mechanics**: Full stats system with inventory, skills, status effects, and strategic combat
 - **Docker Support**: Containerized deployment for easy setup
@@ -113,6 +128,13 @@ python enhanced_terminal_interface.py
 python quest_terminal_interface.py
 # or
 ./run_quest.sh
+```
+
+7. Or run the limited vision interface with fog of war and resource optimization:
+```bash
+python limited_vision_interface.py
+# or
+./run_limited_vision.sh
 ```
 
 ## Usage
@@ -184,6 +206,29 @@ python quest_terminal_interface.py
    - Position tracking to prevent getting stuck in loops
    - Optimized target selection based on game state
 
+### Limited Vision Interface
+
+1. Run `python limited_vision_interface.py` or `./run_limited_vision.sh`
+2. Use the following controls:
+   - N: Start a new game
+   - A: Toggle auto mode (AI will navigate automatically)
+   - F: Toggle fog of war view
+   - M: Toggle full maze view
+   - S: Toggle stats display
+   - 1-9: Use inventory items
+   - D: Change difficulty (easy/medium/hard)
+   - H: Show help screen
+   - Q: Quit the game
+3. Experience the ultra-intelligent AI with:
+   - Limited 3x3 vision range
+   - Fog of war mechanics
+   - Memory-based path planning
+   - Resource collection optimization
+   - Adaptive resource value estimation
+   - Exploration score to guide AI toward unexplored areas
+   - Resources that disappear after collection
+   - Path optimization to collect maximum resources while finding the exit
+
 ## Customization
 
 You can customize the game by modifying the following parameters:
@@ -200,15 +245,16 @@ python run.py --help
 ```
 
 Available options:
-- `--mode`: Choose between 'web', 'terminal', 'advanced', 'enhanced', or 'quest' interfaces
+- `--mode`: Choose between 'web', 'terminal', 'advanced', 'enhanced', 'quest', or 'limited' interfaces
 - `--port`: Set the port for the web interface
 - `--width`, `--height`: Set maze dimensions
 - `--complexity`, `--density`: Adjust maze generation parameters
 - `--difficulty`: Set game difficulty ('easy', 'medium', 'hard')
-- `--auto`: Start in auto mode (advanced/enhanced/quest terminal only)
+- `--auto`: Start in auto mode (advanced/enhanced/quest/limited terminal only)
 - `--show-solution`: Show solution path immediately (advanced/enhanced/quest terminal only)
 - `--show-inventory`: Show inventory immediately (enhanced/quest terminal only)
 - `--show-quest`: Show quest panel immediately (quest terminal only)
+- `--show-fog`: Show fog of war immediately (limited vision mode only)
 
 ## License
 
