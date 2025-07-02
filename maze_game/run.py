@@ -9,9 +9,9 @@ def main():
     parser = argparse.ArgumentParser(description='Luxury Maze Adventure')
     parser.add_argument(
         '--mode',
-        choices=['web', 'terminal'],
-        default='web',
-        help='Interface mode: web or terminal (default: web)',
+        choices=['web', 'terminal', 'advanced'],
+        default='advanced',
+        help='Interface mode: web, terminal, or advanced (default: advanced)',
     )
     parser.add_argument(
         '--port', type=int, default=8000, help='Port for web interface (default: 8000)'
@@ -34,6 +34,16 @@ def main():
         default=0.7,
         help='Density of the maze, 0-1 (default: 0.7)',
     )
+    parser.add_argument(
+        '--auto',
+        action='store_true',
+        help='Start in auto mode (advanced terminal only)',
+    )
+    parser.add_argument(
+        '--show-solution',
+        action='store_true',
+        help='Show solution path (advanced terminal only)',
+    )
 
     args = parser.parse_args()
 
@@ -50,10 +60,17 @@ def main():
 
         app.run(host='0.0.0.0', port=args.port, debug=True)
 
-    else:  # terminal mode
+    elif args.mode == 'terminal':
         # Import and run terminal interface
         sys.path.append(os.path.dirname(os.path.abspath(__file__)))
         from terminal_interface import main
+
+        main()
+
+    else:  # advanced terminal mode
+        # Import and run advanced terminal interface
+        sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+        from advanced_terminal_interface import main
 
         main()
 

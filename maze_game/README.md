@@ -10,6 +10,7 @@ A sophisticated maze game where AI players navigate through randomly generated m
 - **Prompt-Based Engine**: Uses a prompt generation system that can be connected to LLM engines
 - **Web Interface**: Interactive visualization and control of the maze game
 - **Terminal Interface**: Alternative text-based interface for testing and development
+- **Advanced Terminal Interface**: Enhanced curses-based interface with solution visualization and auto-navigation
 
 ## Architecture
 
@@ -21,11 +22,12 @@ The system follows a modular architecture with the following components:
 4. **Maze Engine**: Coordinates game logic and state management
 5. **Web Interface**: Provides a browser-based UI for the game
 6. **Terminal Interface**: Provides a text-based UI for testing
+7. **Advanced Terminal Interface**: Provides a rich curses-based UI with solution visualization
 
 ## Technical Implementation
 
 - **Maze Generation**: Uses a modified Prim's algorithm for maze creation
-- **AI Navigation**: Implements BFS (Breadth-First Search) for pathfinding
+- **AI Navigation**: Implements A* algorithm for optimal pathfinding with complete solution planning
 - **Docker Support**: Containerized deployment for easy setup
 - **Web Framework**: Flask-based web server with interactive UI
 - **Prompt Engineering**: Structured JSON-based prompts with knowledge enhancement
@@ -67,6 +69,13 @@ python web_interface.py
 python terminal_interface.py
 ```
 
+4. Or run the advanced terminal interface:
+```bash
+python advanced_terminal_interface.py
+# or
+./run_advanced.sh
+```
+
 ## Usage
 
 ### Web Interface
@@ -82,6 +91,17 @@ python terminal_interface.py
 2. Follow the on-screen menu to navigate the game
 3. Choose options to advance turns, provide input, or start a new game
 
+### Advanced Terminal Interface
+
+1. Run `python advanced_terminal_interface.py` or `./run_advanced.sh`
+2. Use the following controls:
+   - N: Start a new game
+   - A: Toggle auto mode (AI will navigate automatically)
+   - S: Show/hide the complete solution path
+   - E: Execute the complete solution at once
+   - Q: Quit the game
+3. Watch as the AI player intelligently navigates through the maze
+
 ## Customization
 
 You can customize the game by modifying the following parameters:
@@ -90,6 +110,20 @@ You can customize the game by modifying the following parameters:
 - Complexity and density of the maze
 - AI player strategies
 - Knowledge base for prompt enhancement
+
+### Command Line Options
+
+```bash
+python run.py --help
+```
+
+Available options:
+- `--mode`: Choose between 'web', 'terminal', or 'advanced' interfaces
+- `--port`: Set the port for the web interface
+- `--width`, `--height`: Set maze dimensions
+- `--complexity`, `--density`: Adjust maze generation parameters
+- `--auto`: Start in auto mode (advanced terminal only)
+- `--show-solution`: Show solution path immediately (advanced terminal only)
 
 ## License
 
