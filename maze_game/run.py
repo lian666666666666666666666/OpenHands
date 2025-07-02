@@ -9,9 +9,9 @@ def main():
     parser = argparse.ArgumentParser(description='Luxury Maze Adventure')
     parser.add_argument(
         '--mode',
-        choices=['web', 'terminal', 'advanced'],
-        default='advanced',
-        help='Interface mode: web, terminal, or advanced (default: advanced)',
+        choices=['web', 'terminal', 'advanced', 'enhanced'],
+        default='enhanced',
+        help='Interface mode: web, terminal, advanced, or enhanced (default: enhanced)',
     )
     parser.add_argument(
         '--port', type=int, default=8000, help='Port for web interface (default: 8000)'
@@ -35,14 +35,25 @@ def main():
         help='Density of the maze, 0-1 (default: 0.7)',
     )
     parser.add_argument(
+        '--difficulty',
+        choices=['easy', 'medium', 'hard'],
+        default='medium',
+        help='Game difficulty level (default: medium)',
+    )
+    parser.add_argument(
         '--auto',
         action='store_true',
-        help='Start in auto mode (advanced terminal only)',
+        help='Start in auto mode (advanced/enhanced terminal only)',
     )
     parser.add_argument(
         '--show-solution',
         action='store_true',
-        help='Show solution path (advanced terminal only)',
+        help='Show solution path (advanced/enhanced terminal only)',
+    )
+    parser.add_argument(
+        '--show-inventory',
+        action='store_true',
+        help='Show inventory (enhanced terminal only)',
     )
 
     args = parser.parse_args()
@@ -67,10 +78,17 @@ def main():
 
         main()
 
-    else:  # advanced terminal mode
+    elif args.mode == 'advanced':
         # Import and run advanced terminal interface
         sys.path.append(os.path.dirname(os.path.abspath(__file__)))
         from advanced_terminal_interface import main
+
+        main()
+
+    else:  # enhanced terminal mode
+        # Import and run enhanced terminal interface
+        sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+        from enhanced_terminal_interface import main
 
         main()
 

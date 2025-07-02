@@ -4,33 +4,47 @@ A sophisticated maze game where AI players navigate through randomly generated m
 
 ## Features
 
-- **Random Maze Generation**: Creates unique mazes with varying complexity and density
-- **AI Player Navigation**: Strategic pathfinding algorithms guide the AI through the maze
-- **Rich Game Elements**: Resources, traps, puzzles, and boss battles
-- **Prompt-Based Engine**: Uses a prompt generation system that can be connected to LLM engines
+- **Enhanced Random Maze Generation**: Creates unique mazes with varying complexity, density, and difficulty levels
+- **Super-Intelligent AI Player**: Advanced pathfinding and strategic decision-making with complete solution planning
+- **Rich Game Elements**:
+  - Multiple resource types (small and large)
+  - Different trap varieties (basic and advanced)
+  - Puzzle challenges (easy and hard)
+  - Enemy encounters (minions and boss)
+  - Special features (teleports, shops, checkpoints, secrets)
+- **RPG-Style Progression**:
+  - Character stats (health, attack, defense)
+  - Inventory system with usable items
+  - Skills and abilities
+  - Status effects
+  - Gold and economy
+- **Prompt-Based Engine**: Uses a structured prompt generation system that can be connected to LLM engines
 - **Web Interface**: Interactive visualization and control of the maze game
 - **Terminal Interface**: Alternative text-based interface for testing and development
-- **Advanced Terminal Interface**: Enhanced curses-based interface with solution visualization and auto-navigation
+- **Enhanced Terminal Interface**: Rich curses-based interface with color, animation, solution visualization, and auto-navigation
 
 ## Architecture
 
 The system follows a modular architecture with the following components:
 
-1. **Maze Generator**: Creates random mazes with various features
-2. **AI Player**: Implements pathfinding and decision-making algorithms
-3. **Prompt Generator**: Creates structured prompts for the AI engine
-4. **Maze Engine**: Coordinates game logic and state management
-5. **Web Interface**: Provides a browser-based UI for the game
-6. **Terminal Interface**: Provides a text-based UI for testing
-7. **Advanced Terminal Interface**: Provides a rich curses-based UI with solution visualization
+1. **Enhanced Maze Generator**: Creates complex mazes with various features and difficulty levels
+2. **AI Player**: Basic pathfinding and decision-making algorithms
+3. **Enhanced AI Player**: Advanced AI with RPG mechanics, inventory, skills, and strategic planning
+4. **Prompt Generator**: Creates structured prompts for the AI engine
+5. **Maze Engine**: Coordinates game logic and state management
+6. **Web Interface**: Provides a browser-based UI for the game
+7. **Terminal Interface**: Provides a text-based UI for testing
+8. **Enhanced Terminal Interface**: Provides a rich curses-based UI with color, animation, and advanced visualization
 
 ## Technical Implementation
 
-- **Maze Generation**: Uses a modified Prim's algorithm for maze creation
+- **Maze Generation**: Uses a modified Prim's algorithm with enhanced feature placement
 - **AI Navigation**: Implements A* algorithm for optimal pathfinding with complete solution planning
+- **RPG Mechanics**: Full stats system with inventory, skills, status effects, and strategic combat
 - **Docker Support**: Containerized deployment for easy setup
 - **Web Framework**: Flask-based web server with interactive UI
 - **Prompt Engineering**: Structured JSON-based prompts with knowledge enhancement
+- **Curses Interface**: Rich terminal-based UI with color, animation, and interactive controls
 
 ## Getting Started
 
@@ -76,6 +90,13 @@ python advanced_terminal_interface.py
 ./run_advanced.sh
 ```
 
+5. Or run the enhanced terminal interface with RPG features:
+```bash
+python enhanced_terminal_interface.py
+# or
+./run_enhanced.sh
+```
+
 ## Usage
 
 ### Web Interface
@@ -102,6 +123,27 @@ python advanced_terminal_interface.py
    - Q: Quit the game
 3. Watch as the AI player intelligently navigates through the maze
 
+### Enhanced Terminal Interface
+
+1. Run `python enhanced_terminal_interface.py` or `./run_enhanced.sh`
+2. Use the following controls:
+   - N: Start a new game
+   - A: Toggle auto mode (AI will navigate automatically)
+   - S: Show/hide the complete solution path
+   - E: Execute the complete solution at once
+   - I: Show/hide inventory
+   - 1-9: Use inventory items
+   - D: Change difficulty (easy/medium/hard)
+   - H: Show help screen
+   - Q: Quit the game
+3. Enjoy the rich RPG experience with:
+   - Color-coded maze elements
+   - Health bar and status effects
+   - Inventory management
+   - Combat with enemies and boss
+   - Shops, teleports, and secrets
+   - Multiple difficulty levels
+
 ## Customization
 
 You can customize the game by modifying the following parameters:
@@ -118,12 +160,14 @@ python run.py --help
 ```
 
 Available options:
-- `--mode`: Choose between 'web', 'terminal', or 'advanced' interfaces
+- `--mode`: Choose between 'web', 'terminal', 'advanced', or 'enhanced' interfaces
 - `--port`: Set the port for the web interface
 - `--width`, `--height`: Set maze dimensions
 - `--complexity`, `--density`: Adjust maze generation parameters
-- `--auto`: Start in auto mode (advanced terminal only)
-- `--show-solution`: Show solution path immediately (advanced terminal only)
+- `--difficulty`: Set game difficulty ('easy', 'medium', 'hard')
+- `--auto`: Start in auto mode (advanced/enhanced terminal only)
+- `--show-solution`: Show solution path immediately (advanced/enhanced terminal only)
+- `--show-inventory`: Show inventory immediately (enhanced terminal only)
 
 ## License
 
