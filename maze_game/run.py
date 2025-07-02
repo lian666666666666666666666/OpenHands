@@ -1,0 +1,62 @@
+#!/usr/bin/env python3
+import argparse
+import os
+import sys
+
+
+def main():
+    """Main entry point for the maze game."""
+    parser = argparse.ArgumentParser(description='Luxury Maze Adventure')
+    parser.add_argument(
+        '--mode',
+        choices=['web', 'terminal'],
+        default='web',
+        help='Interface mode: web or terminal (default: web)',
+    )
+    parser.add_argument(
+        '--port', type=int, default=8000, help='Port for web interface (default: 8000)'
+    )
+    parser.add_argument(
+        '--width', type=int, default=21, help='Width of the maze (default: 21)'
+    )
+    parser.add_argument(
+        '--height', type=int, default=21, help='Height of the maze (default: 21)'
+    )
+    parser.add_argument(
+        '--complexity',
+        type=float,
+        default=0.8,
+        help='Complexity of the maze, 0-1 (default: 0.8)',
+    )
+    parser.add_argument(
+        '--density',
+        type=float,
+        default=0.7,
+        help='Density of the maze, 0-1 (default: 0.7)',
+    )
+
+    args = parser.parse_args()
+
+    # Set environment variables for web mode
+    if args.mode == 'web':
+        os.environ['PORT'] = str(args.port)
+        os.environ['MAZE_WIDTH'] = str(args.width)
+        os.environ['MAZE_HEIGHT'] = str(args.height)
+        os.environ['MAZE_COMPLEXITY'] = str(args.complexity)
+        os.environ['MAZE_DENSITY'] = str(args.density)
+
+        # Import and run web interface
+        from web_interface import app
+
+        app.run(host='0.0.0.0', port=args.port, debug=True)
+
+    else:  # terminal mode
+        # Import and run terminal interface
+        sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+        from terminal_interface import main
+
+        main()
+
+
+if __name__ == '__main__':
+    main()

@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  maze-game:
+    build: .
+    ports:
+      - "12000:8000"
+    environment:
+      - PORT=8000
+    volumes:
+      - ./:/app
+    restart: unless-stopped
